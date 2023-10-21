@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp">
+
+        <ImageView
+            android:id="@+id/img_artwork"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_track_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_collection_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_artwork"
+            app:layout_constraintTop_toTopOf="@id/img_artwork"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Track name" />
+
+        <TextView
+            android:id="@+id/tv_collection_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_artist_name"
+            app:layout_constraintEnd_toEndOf="@id/tv_track_name"
+            app:layout_constraintStart_toStartOf="@id/tv_track_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_track_name"
+            tools:text="Collection name" />
+
+        <TextView
+            android:id="@+id/tv_artist_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FF808080"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/img_artwork"
+            app:layout_constraintEnd_toEndOf="@id/tv_track_name"
+            app:layout_constraintStart_toStartOf="@id/tv_track_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_collection_name"
+            tools:text="Artist name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
