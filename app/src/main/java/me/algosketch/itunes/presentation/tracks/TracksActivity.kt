@@ -1,4 +1,4 @@
-package me.algosketch.itunes.presentation
+package me.algosketch.itunes.presentation.tracks
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -10,16 +10,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.algosketch.itunes.R
-import me.algosketch.itunes.databinding.ActivityMainBinding
+import me.algosketch.itunes.databinding.ActivityTracksBinding
+import me.algosketch.itunes.presentation.model.toModel
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class TracksActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityTracksBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_tracks)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 

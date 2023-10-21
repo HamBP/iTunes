@@ -1,4 +1,4 @@
-package me.algosketch.itunes.presentation
+package me.algosketch.itunes.presentation.model
 
 import me.algosketch.itunes.data.model.TrackResponse
 

@@ -1,8 +1,9 @@
-package me.algosketch.itunes.presentation
+package me.algosketch.itunes.presentation.tracks
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import me.algosketch.itunes.presentation.model.TrackModel
 
 class TrackAdapter(diffCallback: DiffUtil.ItemCallback<TrackModel>) :
     PagingDataAdapter<TrackModel, TrackViewHolder>(diffCallback) {

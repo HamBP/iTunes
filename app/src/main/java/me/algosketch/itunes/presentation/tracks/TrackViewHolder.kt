@@ -1,9 +1,10 @@
-package me.algosketch.itunes.presentation
+package me.algosketch.itunes.presentation.tracks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import me.algosketch.itunes.databinding.TrackItemBinding
+import me.algosketch.itunes.presentation.model.TrackModel
 
 class TrackViewHolder private constructor(
     private val binding: TrackItemBinding,

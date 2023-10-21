@@ -1,4 +1,4 @@
-package me.algosketch.itunes.presentation
+package me.algosketch.itunes.presentation.tracks
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
