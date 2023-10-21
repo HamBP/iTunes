@@ -15,7 +15,7 @@ import me.algosketch.itunes.presentation.model.toModel
 
 @AndroidEntryPoint
 class TracksActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: TracksViewModel by viewModels()
     private lateinit var binding: ActivityTracksBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

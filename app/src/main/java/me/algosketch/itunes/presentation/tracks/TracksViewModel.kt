@@ -10,7 +10,7 @@ import me.algosketch.itunes.data.remote.TrackPagingSource
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class TracksViewModel @Inject constructor(
     private val trackPagingSource: TrackPagingSource,
 ) : ViewModel() {
 
