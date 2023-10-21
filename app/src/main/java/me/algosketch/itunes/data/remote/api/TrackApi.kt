@@ -12,5 +12,7 @@ interface TrackApi {
     suspend fun getTracks(
         @Query("term") term: String = "greenday",
         @Query("entity") entity: String = "song",
+        @Query("offset") offset: Int = 0,
+        @Query("limit") limit: Int = 10,
     ): Response<PageResponse<TrackResponse>>
 }
