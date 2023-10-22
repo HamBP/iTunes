@@ -32,7 +32,7 @@ class TracksActivity : AppCompatActivity() {
         binding.rvTracks.adapter = adapter
         lifecycleScope.launch {
             viewModel.trackFlow.collectLatest { pagingData ->
-                adapter.submitData(pagingData.map { it.toModel() })
+                adapter.submitData(pagingData)
             }
         }
     }
