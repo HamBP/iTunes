@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="body1">16sp</dimen>
+    <dimen name="body2">14sp</dimen>
+    <dimen name="body3">12sp</dimen>
+
+    <dimen name="margin_horizontal">16dp</dimen>
+</resources>

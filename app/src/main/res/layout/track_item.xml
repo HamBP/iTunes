@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="@dimen/margin_horizontal"
         android:paddingVertical="16dp">
 
         <ImageView
@@ -34,7 +34,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{item.trackName}"
-            android:textSize="16sp"
+            android:textSize="@dimen/body1"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_collection_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{item.collectionName}"
-            android:textSize="14sp"
+            android:textSize="@dimen/body2"
             app:layout_constraintBottom_toTopOf="@id/tv_artist_name"
             app:layout_constraintEnd_toEndOf="@id/tv_track_name"
             app:layout_constraintStart_toStartOf="@id/tv_track_name"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="@{item.artistName}"
             android:textColor="#FF808080"
-            android:textSize="12sp"
+            android:textSize="@dimen/body3"
             app:layout_constraintBottom_toBottomOf="@id/img_artwork"
             app:layout_constraintEnd_toEndOf="@id/tv_track_name"
             app:layout_constraintStart_toStartOf="@id/tv_track_name"
