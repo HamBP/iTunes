@@ -8,19 +8,20 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import me.algosketch.itunes.data.TrackRepository
 import me.algosketch.itunes.data.remote.TrackPagingSource
 import me.algosketch.itunes.presentation.model.toModel
 import javax.inject.Inject
 
 @HiltViewModel
 class TracksViewModel @Inject constructor(
-    private val trackPagingSource: TrackPagingSource,
+    private val trackRepository: TrackRepository,
 ) : ViewModel() {
 
     val trackFlow = Pager(
         PagingConfig(pageSize = 10)
     ) {
-        trackPagingSource
+        TrackPagingSource(trackRepository, "greenday")
     }.flow
         .cachedIn(viewModelScope)
         .map { pagingData ->

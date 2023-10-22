@@ -2,28 +2,29 @@ package me.algosketch.itunes.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import me.algosketch.itunes.data.TrackRepository
+import me.algosketch.itunes.data.model.TrackQuery
 import me.algosketch.itunes.data.model.TrackResponse
-import me.algosketch.itunes.data.remote.api.TrackApi
 import javax.inject.Inject
 
-class TrackPagingSource @Inject constructor(
-    private val api: TrackApi,
+class TrackPagingSource(
+    private val repository: TrackRepository,
+    private val keyword: String,
 ) : PagingSource<Int, TrackResponse>() {
-
-    private val query = "greenday"
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TrackResponse> {
         return try {
             val nextPageNumber = params.key ?: 1
-            val offset = nextPageNumber * params.loadSize
-            val response = api.getTracks(
-                term = query,
-                offset = offset,
-                limit = params.loadSize,
+            val response = repository.getTracks(
+                TrackQuery(
+                    keyword = keyword,
+                    page = nextPageNumber,
+                    limit = params.loadSize,
+                )
             )
 
             LoadResult.Page(
-                data = response.body()!!.results,
+                data = response,
                 prevKey = null,
                 nextKey = nextPageNumber + 1
             )
