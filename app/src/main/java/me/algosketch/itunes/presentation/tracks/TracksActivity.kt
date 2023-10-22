@@ -16,6 +16,7 @@ import me.algosketch.itunes.R
 import me.algosketch.itunes.core.exceptions.ItException
 import me.algosketch.itunes.databinding.ActivityTracksBinding
 import me.algosketch.itunes.presentation.util.messageId
+import me.algosketch.itunes.presentation.util.showToast
 
 @AndroidEntryPoint
 class TracksActivity : AppCompatActivity() {
@@ -58,14 +59,5 @@ class TracksActivity : AppCompatActivity() {
             if (e is ItException) showToast(e.messageId)
             else showToast(e.message ?: "알 수 없는 에러")
         }
-    }
-
-    private fun showToast(@StringRes messageId: Int) {
-        val message = resources.getString(messageId)
-        showToast(message)
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
