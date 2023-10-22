@@ -28,8 +28,10 @@ class TracksActivity : AppCompatActivity() {
     }
 
     private fun setupTracks() {
-        val adapter = TrackAdapter(TrackComparator)
-        binding.rvTracks.adapter = adapter
+        val adapter = TrackAdapter(TrackComparator).apply {
+            binding.rvTracks.adapter = withLoadStateFooter(ItLoadStateAdapter())
+        }
+
         lifecycleScope.launch {
             viewModel.trackFlow.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
