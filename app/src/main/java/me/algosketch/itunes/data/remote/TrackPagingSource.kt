@@ -2,10 +2,9 @@ package me.algosketch.itunes.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import me.algosketch.itunes.data.TrackRepository
+import me.algosketch.itunes.data.repository.TrackRepository
 import me.algosketch.itunes.data.model.TrackQuery
 import me.algosketch.itunes.data.model.TrackResponse
-import javax.inject.Inject
 
 class TrackPagingSource(
     private val repository: TrackRepository,

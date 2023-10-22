@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
-import me.algosketch.itunes.data.TrackRepository
+import me.algosketch.itunes.data.repository.TrackRepository
 import me.algosketch.itunes.data.remote.TrackPagingSource
 import me.algosketch.itunes.presentation.model.toModel
 import javax.inject.Inject
