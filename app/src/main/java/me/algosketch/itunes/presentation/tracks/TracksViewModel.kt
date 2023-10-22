@@ -7,7 +7,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import me.algosketch.itunes.data.TrackRepository
 import me.algosketch.itunes.data.remote.TrackPagingSource
 import me.algosketch.itunes.presentation.model.toModel
@@ -18,14 +25,18 @@ class TracksViewModel @Inject constructor(
     private val trackRepository: TrackRepository,
 ) : ViewModel() {
 
-    val trackFlow = Pager(
-        PagingConfig(pageSize = 10)
-    ) {
-        TrackPagingSource(trackRepository, "greenday")
-    }.flow
-        .cachedIn(viewModelScope)
-        .map { pagingData ->
-            pagingData.map { it.toModel() }
-        }
+    private val _keyword = MutableStateFlow("greenday")
+    val keyword: StateFlow<String> = _keyword.asStateFlow()
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val trackFlow = keyword.flatMapLatest {
+        Pager(PagingConfig(pageSize = 10)) {
+            TrackPagingSource(trackRepository, it)
+        }.flow
+            .cachedIn(viewModelScope)
+            .map { pagingData ->
+                pagingData.map { it.toModel() }
+            }
+    }
 
 }
