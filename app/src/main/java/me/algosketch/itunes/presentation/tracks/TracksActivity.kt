@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.map
@@ -39,21 +40,25 @@ class TracksActivity : AppCompatActivity() {
         }
 
         adapter.addLoadStateListener { loadStates ->
-            val errorMessage = when {
-                loadStates.refresh is LoadState.Error -> (loadStates.refresh as LoadState.Error).error.message
-                loadStates.append is LoadState.Error -> (loadStates.append as LoadState.Error).error.message
-                else -> null
-            }
-
-            errorMessage?.let { message ->
-                showToast(message)
-            }
+            handleError(loadStates)
         }
 
         lifecycleScope.launch {
             viewModel.trackFlow.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
+        }
+    }
+
+    private fun handleError(loadStates: CombinedLoadStates) {
+        val errorMessage = when {
+            loadStates.refresh is LoadState.Error -> (loadStates.refresh as LoadState.Error).error.message
+            loadStates.append is LoadState.Error -> (loadStates.append as LoadState.Error).error.message
+            else -> null
+        }
+
+        errorMessage?.let { message ->
+            showToast(message)
         }
     }
 
