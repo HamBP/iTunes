@@ -1,6 +1,8 @@
 # iTunes
 
-### 실행 결과
+### 실행 화면
+
+https://github.com/HamBP/iTunes/assets/35232655/8963f30d-045b-4acd-a35b-5df11d204674
 
 ### 라이브러리
 
