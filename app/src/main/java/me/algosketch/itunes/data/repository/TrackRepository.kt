@@ -1,9 +1,11 @@
 package me.algosketch.itunes.data.repository
 
-import me.algosketch.itunes.core.exceptions.NetworkException
-import me.algosketch.itunes.core.exceptions.UnknownException
-import me.algosketch.itunes.data.model.TrackQuery
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
 import me.algosketch.itunes.data.model.TrackResponse
+import me.algosketch.itunes.data.remote.TrackPagingSource
 import me.algosketch.itunes.data.remote.api.TrackApi
 import javax.inject.Inject
 
@@ -11,18 +13,9 @@ class TrackRepository @Inject constructor(
     private val api: TrackApi,
 ) {
 
-    suspend fun getTracks(query: TrackQuery): List<TrackResponse> {
-        val response = api.getTracks(
-            term = query.keyword,
-            entity = query.entity,
-            offset = query.offset,
-            limit = query.limit,
-        )
-
-        return if (response.isSuccessful) {
-            response.body()?.results ?: throw UnknownException
-        } else {
-            throw NetworkException
-        }
+    fun getTracksFlow(keyword: String): Flow<PagingData<TrackResponse>> {
+        return Pager(PagingConfig(pageSize = 10)) {
+            TrackPagingSource(api, keyword)
+        }.flow
     }
 }
