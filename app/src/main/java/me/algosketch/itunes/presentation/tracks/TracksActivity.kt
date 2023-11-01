@@ -22,11 +22,12 @@ import me.algosketch.itunes.presentation.util.showToast
 @AndroidEntryPoint
 class TracksActivity : AppCompatActivity() {
     private val viewModel: TracksViewModel by viewModels()
-    private lateinit var binding: ActivityTracksBinding
+    private var _binding: ActivityTracksBinding? = null
+    private val binding: ActivityTracksBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_tracks)
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_tracks)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -61,5 +62,10 @@ class TracksActivity : AppCompatActivity() {
             if (e is ItException) showToast(e.messageId)
             else showToast(e.message ?: "알 수 없는 에러")
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
